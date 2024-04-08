@@ -4,36 +4,35 @@
     <style>
       #lbl {
         display: flex;
+        flex-direction: column; /* Changed to column to stack children vertically */
+        align-items: flex-start; /* Align children to the start of the flex container */
         font-family: sans-serif;
         font-size: 18pt;
-        color: black; /* Text color set to black */
+        color: black;
         padding: 5px;
-        border: none; /* Border removed */
         justify-content: left;
         line-height: 1.5;
         height: 85%;
         font-weight: bold;
-        flex-direction: row;
       }
 
-      #container {
-        display: flex;
-        align-items: flex-start;
-      }
-
-      #date {
+      #date{
           font-size: 12pt;
           font-weight: bold;
-          color: black; /* Ensure text color within #date is also black */
+          color: black;
+          margin-bottom: 5px; /* Add space between the date and the greeting */
       }
 
-      body {
+      body{
           background-color: #ffffff;
       }
     </style>
 </head>
 <body>
-    <div id="lbl"></div>
+    <div id="lbl">
+        <div id="date"></div>
+        <div id="greeting"></div>
+    </div>
 </body>
 
 <script>
@@ -47,7 +46,6 @@
     var hrs = today.getHours();
     var dayOfWeek = weekday[today.getDay()];
     var date = `${dayOfWeek}, ${monthNames[today.getMonth()]} ${today.getDate()}, ${today.getFullYear()}`;
-
     var greet;
 
     if (hrs < 12)
@@ -57,13 +55,10 @@
     else if (hrs >= 17 && hrs <= 24)
         greet = 'Good evening.';
 
-    document.getElementById('lbl').innerHTML = `
-        <div id="container">
-          <div id="date">${date}</div>
-          <div>${greet}</div>
-        </div>
-    `;
+    document.getElementById('date').innerText = date;
+    document.getElementById('greeting').innerText = greet;
 </script> 
 </html>
+
 
 
