@@ -8,10 +8,10 @@
         font-size: 18pt;
         color: black; /* Text color set to black */
         padding: 5px;
-        border: 1px solid black; /* Border color set to black */
+        border: none; /* Border removed */
         justify-content: left;
         line-height: 1.5;
-        height:85%;
+        height: 85%;
         font-weight: bold;
         flex-direction: row;
       }
@@ -21,13 +21,13 @@
         align-items: flex-start;
       }
 
-      #date{
-          font-size:12pt;
+      #date {
+          font-size: 12pt;
           font-weight: bold;
           color: black; /* Ensure text color within #date is also black */
       }
 
-      body{
+      body {
           background-color: #ffffff;
       }
     </style>
@@ -37,14 +37,7 @@
 </body>
 
 <script>
-    var weekday = new Array(7);
-    weekday[0] = "Sunday";
-    weekday[1] = "Monday";
-    weekday[2] = "Tuesday";
-    weekday[3] = "Wednesday";
-    weekday[4] = "Thursday";
-    weekday[5] = "Friday";
-    weekday[6] = "Saturday";
+    var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
     const monthNames = ["January", "February", "March", "April", "May", "June",
       "July", "August", "September", "October", "November", "December"
@@ -65,11 +58,12 @@
         greet = 'Good evening.';
 
     document.getElementById('lbl').innerHTML = `
-        <div class="container">
+        <div id="container">
           <div id="date">${date}</div>
-          <div class="greeting" style="color: black;">${greet}</div> <!-- Ensure greeting text is black -->
+          <div>${greet}</div>
         </div>
     `;
 </script> 
 </html>
+
 
