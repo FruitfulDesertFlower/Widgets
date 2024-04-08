@@ -1,0 +1,139 @@
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Bebas+Neue" rel="stylesheet">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greeting</title>
+
+    <style>
+        /* CSS RESETS */
+        body {
+            background-color: white; /* Changed to white */
+            line-height: 1.6;
+            height: 100vh;
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        /* CSS START */
+        .full-table {
+            display: table;
+            height: 100%;
+            width: 100%;
+        }
+
+        .table-cell {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        .card {
+            padding: 10px 25px 10px 25px;
+            border-radius: 10px;
+            background: black; /* Changed to black */
+            width: 85vw;
+            color: white; /* Changed to white */
+            display: inline-block;
+            box-shadow: 2px 2px 1px 0px #8f95e5;
+        }
+
+        .card:hover {
+            margin-top: 2px;
+            box-shadow: none;
+        }
+
+        .clock {
+            display: inline;
+            font-family: 'Bebas Neue', cursive;
+            font-size: 2em;
+            color: white; /* Changed to white */
+        }
+
+        .time {
+            display: inline;
+            min-width: 37px;
+        }
+
+        .colon {
+            font-size: 1.1em;
+            display: inline-block;
+            color: white; /* Changed to white */
+        }
+
+        .date {
+            display: inline;
+            min-width: 162px;
+            font-family: 'Bebas Neue', cursive;
+            font-size: 2em;
+            padding-right: 30px;
+            color: white; /* Changed to white */
+        }
+          
+        .greet {
+            display: inline;
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            padding-right: 30px;
+            color: white; /* Changed to white */
+        }
+    </style>
+</head>
+<body>
+
+<div class="full-table">
+  <div class="table-cell">
+    <div class="card">
+        <div class="greet" id="greet"></div>
+        <div class="date" id="date"></div>
+        <div class="clock">
+            <div class="time" id="hour"></div>
+            <div class="colon">:</div>
+            <div class="time" id="min"></div>
+            <div class="colon">:</div>
+            <div class="time" id="sec"></div>
+        </div>
+    </div>
+  </div>
+</div>
+
+<script>
+    function updateDateAndTime() {
+        var today = new Date();
+        var hour = today.getHours();
+        var minute = today.getMinutes();
+        var second = today.getSeconds();
+
+        // Format the time as HH:MM:SS AM/PM
+        var ampm = hour >= 12 ? 'pm' : 'am';
+        hour = hour % 12;
+        hour = hour ? hour : 12; // the hour '0' should be '12'
+        minute = minute < 10 ? '0'+minute : minute;
+        var strTime = hour + ':' + minute + ':' + second + ' ' + ampm;
+        
+        // Set the time and date
+        document.getElementById('hour').innerText = hour;
+        document.getElementById('min').innerText = minute;
+        document.getElementById('sec').innerText = second;
+        document.getElementById('date').innerText = today.toDateString();
+        
+        // Update the greeting based on the time of day
+        var greetText = 'Good Morning, Katja'; // Default greeting
+        if (hour < 12) {
+            greetText = 'Good Morning, Katja';
+        } else if (hour < 18) {
+            greetText = 'Good Afternoon, Katja';
+        } else {
+            greetText = 'Good Evening, Katja';
+        }
+        document.getElementById('greet').innerText = greetText;
+    }
+
+    setInterval(updateDateAndTime, 1000); // Update date and time every second
+</script>
+
+</body>
+</html>
